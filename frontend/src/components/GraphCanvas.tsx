@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   ReactFlow,
   Node,
   Edge,
-  addEdge,
   Connection,
   useNodesState,
   useEdgesState,
@@ -29,15 +28,15 @@ interface GraphCanvasProps {
   onNodeClick: (nodeId: string) => void;
 }
 
-export default function GraphCanvas({ 
-  nodes: graphNodes, 
-  edges: graphEdges, 
-  onConnect, 
+export default function GraphCanvas({
+  nodes: graphNodes,
+  edges: graphEdges,
+  onConnect,
   onDisconnect,
-  onNodeClick 
+  onNodeClick
 }: GraphCanvasProps) {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
 
   useEffect(() => {
     const flowNodes: Node[] = graphNodes.map((node, index) => ({
