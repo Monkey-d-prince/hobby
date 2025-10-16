@@ -1,0 +1,280 @@
+.user-management {
+  padding: 1.2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.user-icon {
+  font-size: 1.3rem;
+}
+
+.user-header h2 {
+  font-size: 1rem;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.create-user-btn {
+  width: 100%;
+  padding: 0.6rem;
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+  transition: background 0.15s;
+}
+
+.create-user-btn:hover {
+  background: #333;
+}
+
+.create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.create-form input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  background: white;
+}
+
+.create-form input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.submit-btn {
+  padding: 0.5rem;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.submit-btn:hover {
+  background: #059669;
+}
+
+.users-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.users-section h3 {
+  font-size: 0.8rem;
+  color: #1a1a1a;
+  margin-bottom: 0.7rem;
+  font-weight: 600;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem;
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.user-item:hover {
+  background: #f0f9ff;
+  border-color: #3b82f6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.user-item.selected {
+  background: #dbeafe;
+  border-color: #3b82f6;
+  box-shadow: 0 1px 3px rgba(59, 130, 246, 0.1);
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.2rem;
+  font-size: 0.85rem;
+}
+
+.user-details,
+.user-friends {
+  font-size: 0.72rem;
+  color: #666;
+  margin-top: 0.2rem;
+}
+
+.user-actions {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.edit-btn,
+.delete-btn {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  opacity: 1;
+}
+
+.selected-user-details {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 5px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.selected-user-details h3 {
+  font-size: 0.85rem;
+  color: #92400e;
+  margin-bottom: 0.7rem;
+  font-weight: 600;
+}
+
+.user-hobbies,
+.user-friends-list {
+  margin-bottom: 0.8rem;
+}
+
+.user-hobbies h4,
+.user-friends-list h4 {
+  font-size: 0.75rem;
+  color: #92400e;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.hobby-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.hobby-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: white;
+  padding: 0.3rem 0.5rem;
+  border-radius: 14px;
+  font-size: 0.72rem;
+  border: 1px solid #fde68a;
+}
+
+.hobby-tag button {
+  background: #ef4444;
+  color: white;
+  border: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.hobby-tag button:hover {
+  background: #dc2626;
+}
+
+.user-friends-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.friend-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.6rem;
+  background: white;
+  border: 1px solid #fde68a;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  color: #92400e;
+}
+
+.unlink-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+  padding: 0.2rem;
+}
+
+.unlink-btn:hover {
+  opacity: 1;
+}
+
+.drop-zone {
+  margin-top: 0.7rem;
+  padding: 0.7rem;
+  border: 2px dashed #fbbf24;
+  border-radius: 5px;
+  text-align: center;
+  color: #92400e;
+  font-size: 0.72rem;
+  background: white;
+}

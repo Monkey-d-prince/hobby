@@ -1,0 +1,74 @@
+.custom-node {
+  background: white;
+  border-radius: 7px;
+  padding: 0.7rem 0.8rem;
+  min-width: 120px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.custom-node.low-score {
+  border: 2px solid #3b82f6;
+}
+
+.custom-node.high-score {
+  border: 2px solid #f59e0b;
+  background: #fffbeb;
+}
+
+.custom-node.selected {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+}
+
+.custom-node:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.node-header {
+  margin-bottom: 0.5rem;
+}
+
+.node-username {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+  margin-bottom: 0.2rem;
+}
+
+.node-age {
+  font-size: 0.72rem;
+  color: #666;
+}
+
+.node-score {
+  background: #fafafa;
+  padding: 0.3rem 0.4rem;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.75rem;
+  border: 1px solid #e5e5e5;
+}
+
+.custom-node.high-score .node-score {
+  background: white;
+  border-color: #fbbf24;
+}
+
+.node-handle {
+  background: #94a3b8;
+  width: 7px;
+  height: 7px;
+  border: 2px solid white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.custom-node.high-score .node-handle {
+  background: #f59e0b;
+}
+
+.custom-node.low-score .node-handle {
+  background: #3b82f6;
+}
