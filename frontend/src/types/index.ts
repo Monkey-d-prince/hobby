@@ -1,3 +1,31 @@
+import { Connection, Edge, Node, Position, XYPosition } from '@xyflow/react';
+
+export interface Hobby {
+  id: string;
+  name: string;
+}
+
+export interface BaseNodeData extends Record<string, unknown> {
+  username: string;
+  age: number;
+  popularity_score: number;
+  hobbies: Hobby[];
+}
+
+export interface NodeProps extends Record<string, unknown> {
+  id: string;
+  position: XYPosition;
+  type?: string;
+  sourcePosition?: Position;
+  targetPosition?: Position;
+}
+
+export type NodeData = BaseNodeData & NodeProps;
+
+export type FlowNode = Node<BaseNodeData>;
+export type FlowEdge = Edge;
+export type FlowConnection = Connection;
+
 export interface User {
   id: string;
   username: string;
@@ -12,8 +40,10 @@ export interface UserGraph {
   id: string;
   username: string;
   age: number;
-  hobbies: string[];
   popularity_score: number;
+  hobbies: Hobby[];
+  x: number;
+  y: number;
 }
 
 export interface EdgeGraph {

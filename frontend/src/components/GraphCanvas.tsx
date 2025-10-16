@@ -1,24 +1,33 @@
-import { useCallback, useEffect } from 'react';
 import {
-  ReactFlow,
-  Node,
-  Edge,
-  Connection,
-  useNodesState,
-  useEdgesState,
+  applyEdgeChanges,
+  applyNodeChanges,
   Background,
+  Connection,
   Controls,
+  Edge,
+  EdgeChange,
   MiniMap,
+  Node,
+  NodeChange,
   NodeTypes,
+  ReactFlow
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import CustomNode from './CustomNode';
-import { UserGraph, EdgeGraph } from '../types';
+import { useCallback, useEffect, useState } from 'react';
 import '../styles/GraphCanvas.css';
+import { EdgeGraph, UserGraph } from '../types';
+import CustomNode from './CustomNode';
 
-const nodeTypes: NodeTypes = {
+export interface NodeData extends Record<string, unknown> {
+  username: string;
+  age: number;
+  popularity_score: number;
+  hobbies: string[];
+}
+
+const nodeTypes = {
   custom: CustomNode,
-};
+} satisfies NodeTypes;
 
 interface GraphCanvasProps {
   nodes: UserGraph[];
@@ -28,18 +37,29 @@ interface GraphCanvasProps {
   onNodeClick: (nodeId: string) => void;
 }
 
+type FlowNode = Node<NodeData>;
+type FlowEdge = Edge;
+
 export default function GraphCanvas({
   nodes: graphNodes,
   edges: graphEdges,
   onConnect,
   onDisconnect,
-  onNodeClick
+  onNodeClick,
 }: GraphCanvasProps) {
-  const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
+  const [nodes, setNodes] = useState<Node<NodeData>[]>([]);
+  const [edges, setEdges] = useState<Edge[]>([]);
+
+  const onNodesChange = useCallback((changes: NodeChange[]) => {
+    setNodes((nds) => applyNodeChanges(changes, nds) as FlowNode[]);
+  }, [setNodes]);
+
+  const onEdgesChange = useCallback((changes: EdgeChange[]) => {
+    setEdges((eds) => applyEdgeChanges(changes, eds) as FlowEdge[]);
+  }, [setEdges]);
 
   useEffect(() => {
-    const flowNodes: Node[] = graphNodes.map((node, index) => ({
+    const flowNodes = graphNodes.map((node, index) => ({
       id: node.id,
       type: 'custom',
       position: { x: (index % 4) * 250, y: Math.floor(index / 4) * 200 },
@@ -47,11 +67,11 @@ export default function GraphCanvas({
         username: node.username,
         age: node.age,
         popularity_score: node.popularity_score,
-        hobbies: node.hobbies,
+        hobbies: node.hobbies.map(h => h.id),
       },
-    }));
+    })) as Node<NodeData>[];
 
-    const flowEdges: Edge[] = graphEdges.map((edge) => ({
+    const flowEdges: FlowEdge[] = graphEdges.map((edge) => ({
       id: edge.id,
       source: edge.source,
       target: edge.target,
@@ -116,7 +136,7 @@ export default function GraphCanvas({
         <Controls />
         <MiniMap
           nodeColor={(node) => {
-            const score = (node.data as any).popularity_score || 0;
+            const score = (node.data as unknown as NodeData).popularity_score || 0;
             return score > 5 ? '#f59e0b' : '#3b82f6';
           }}
         />

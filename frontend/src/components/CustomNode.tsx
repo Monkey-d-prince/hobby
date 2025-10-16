@@ -1,15 +1,14 @@
+import { Handle, Position } from '@xyflow/react';
 import { memo } from 'react';
-import { Handle, Position, NodeProps } from '@xyflow/react';
 import '../styles/CustomNode.css';
+import type { BaseNodeData } from '../types';
 
-interface CustomNodeData {
-  username: string;
-  age: number;
-  popularity_score: number;
-  hobbies: string[];
-}
+type CustomNodeProps = {
+  data: BaseNodeData;
+  selected?: boolean;
+};
 
-function CustomNode({ data, selected }: NodeProps<CustomNodeData>) {
+function CustomNode({ data, selected }: CustomNodeProps) {
   const isHighScore = data.popularity_score > 5;
 
   return (
